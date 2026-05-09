@@ -38,7 +38,7 @@ export default function Footer({ onBookClick }: Props) {
         </div>
 
         <div className="footer__bottom">
-          <p>&copy; 2024 Jenco IT Solutions. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Jenco IT Solutions. All rights reserved.</p>
           <div className="footer__social">
             <a href="#linkedin" aria-label="LinkedIn">LinkedIn</a>
             <a href="#twitter" aria-label="Twitter">Twitter</a>
