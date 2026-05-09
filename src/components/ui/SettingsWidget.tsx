@@ -9,8 +9,8 @@ import { HexColorPicker } from 'react-colorful';
 import { useTheme, ThemeColors } from '../../context/ThemeContext';
 
 const COLOR_FIELDS: { key: keyof ThemeColors; label: string; helper?: string }[] = [
-  { key: 'sidebar', label: 'Sidebar Background', helper: 'Mobile Sidebar background' },
-  { key: 'page', label: 'Page Background', helper: 'Main site background' },
+  { key: 'page', label: 'Main Background', helper: 'Main site background color' },
+  { key: 'footer', label: 'Footer Background', helper: 'Bottom section background' },
   { key: 'accent1', label: 'Accent 1', helper: 'Primary actions, highlights' },
   { key: 'accent2', label: 'Accent 2', helper: 'Secondary accents, hover' },
 ];
@@ -259,16 +259,6 @@ const SettingsWidget: React.FC = () => {
 
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
             <button
-              className="btn-primary"
-              style={{ flex: 2, minHeight: '52px' }}
-              onClick={() => {
-                saveTheme();
-              }}
-            >
-              <Save size={18} style={{ marginRight: 8 }} />
-              Save Changes
-            </button>
-            <button
               className="btn-secondary"
               style={{ flex: 1, minHeight: '52px', border: '1px solid rgba(255,255,255,0.1)' }}
               onClick={() => {
@@ -277,6 +267,16 @@ const SettingsWidget: React.FC = () => {
             >
               <RotateCcw size={18} style={{ marginRight: 8 }} />
               Restore
+            </button>
+            <button
+              className="btn-primary"
+              style={{ flex: 2, minHeight: '52px' }}
+              onClick={() => {
+                saveTheme();
+              }}
+            >
+              <Save size={18} style={{ marginRight: 8 }} />
+              Save Changes
             </button>
           </Box>
         </Box>

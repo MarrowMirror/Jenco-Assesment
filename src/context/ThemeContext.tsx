@@ -1,15 +1,15 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 export interface ThemeColors {
-  sidebar: string;
   page: string;
+  footer: string;
   accent1: string;
   accent2: string;
 }
 
 export const DEFAULT_THEME: ThemeColors = {
-  sidebar: '#080C10',
-  page: '#0D1117',
+  page: '#000000',
+  footer: '#080C10',
   accent1: '#fffdc8',
   accent2: '#007e7e',
 };
@@ -46,13 +46,13 @@ export function applyThemeToCSSVars(t: ThemeColors): void {
   requestAnimationFrame(() => {
     const root = document.documentElement;
     
-    // Sidebar
-    root.style.setProperty('--color-sidebar-bg', t.sidebar);
-    root.style.setProperty('--color-sidebar-text', getAdaptiveTextColor(t.sidebar));
-    
     // Page
     root.style.setProperty('--color-page-bg', t.page);
     root.style.setProperty('--color-page-text', getAdaptiveTextColor(t.page));
+    
+    // Footer (replaces sidebar)
+    root.style.setProperty('--color-footer-bg', t.footer);
+    root.style.setProperty('--color-footer-text', getAdaptiveTextColor(t.footer));
     
     // Accents
     root.style.setProperty('--color-primary', t.accent1);

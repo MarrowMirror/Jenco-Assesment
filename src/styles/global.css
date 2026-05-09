@@ -282,29 +282,33 @@ button {
 ========================================================= */
 
 .nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
 
   z-index: 1000;
 
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  background: rgba(8, 12, 16, 0.8);
+  background: transparent;
 
   border-bottom:
-    1px solid rgba(255,255,255,0.05);
+    1px solid transparent;
 
   transition:
-    background .35s var(--transition),
-    box-shadow .35s var(--transition);
+    all .4s var(--transition);
 }
 
 .nav.shrink {
-  background: rgba(8, 12, 16, 0.95);
-
+  background: rgba(8, 12, 16, 0.35); /* Much lighter for true glass effect */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-block: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   box-shadow:
-    0 18px 48px rgba(0,0,0,0.24);
+    0 20px 50px rgba(0,0,0,0.15);
 }
 
 .nav__inner {
@@ -357,6 +361,19 @@ button {
   transition:
     color .25s ease,
     text-shadow .25s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav__link-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 99px;
+  box-shadow: 0 0 12px var(--accent);
 }
 
 .nav__links a:hover,
@@ -395,7 +412,7 @@ button {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 8rem 0 8rem 0;
+  padding: 8rem 0 11rem 0;
 }
 
 .hero__video-bg {
@@ -1156,9 +1173,9 @@ button {
 ========================================================= */
 
 .MuiDrawer-paper {
-  background-color: #080C10 !important;
+  background-color: var(--color-footer-bg, #080C10) !important;
   background-image: none !important;
-  color: white !important;
+  color: var(--color-footer-text, white) !important;
 }
 
 /* =========================================================
@@ -1166,7 +1183,8 @@ button {
 ========================================================= */
 
 .footer {
-  background: rgba(8, 13, 23, 0.92);
+  background: var(--color-footer-bg, rgba(8, 13, 23, 0.92));
+  color: var(--color-footer-text, var(--text));
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -1283,11 +1301,13 @@ button {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 2000; /* Above nav (1000) */
   display: grid;
   place-items: center;
   padding: 1.5rem;
-  background: rgba(4, 12, 24, 0.88);
+  background: rgba(4, 12, 24, 0.4); /* Lighter background to show blur */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .modal-window {

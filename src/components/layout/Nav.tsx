@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Drawer, IconButton, List, ListItem, ListItemButton, Box, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { motion } from 'framer-motion';
 
 interface Props {
   onBookClick: () => void;
@@ -10,6 +11,7 @@ interface Props {
 export default function Nav({ onBookClick }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
 
   useEffect(() => {
     function handleScroll() {
@@ -36,7 +38,12 @@ export default function Nav({ onBookClick }: Props) {
   };
 
   return (
-    <header className={`nav ${scrolled ? 'shrink' : ''}`}>
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+      className={`nav ${scrolled ? 'shrink' : ''}`}
+    >
       <div className="container nav__inner">
         <a href="/construction" className="nav__logo">
           <img src="/logo.png" alt="Jenco IT Solutions" className="nav__logo-image" />
@@ -45,19 +52,48 @@ export default function Nav({ onBookClick }: Props) {
         {/* Desktop Nav */}
         <nav className="nav__links">
           {navLinks.map((link) => (
-            <a key={link.label} href={link.href} onClick={(e) => {
-              e.preventDefault();
-              handleLinkClick(link.href);
-            }}>
+            <a 
+              key={link.label} 
+              href={link.href} 
+              className="nav__link-item"
+              onMouseEnter={() => setHoveredPath(link.href)}
+              onMouseLeave={() => setHoveredPath(null)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick(link.href);
+              }}
+            >
               {link.label}
+              {hoveredPath === link.href && (
+                <motion.div
+                  layoutId="nav-hover"
+                  className="nav__link-indicator"
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  exit={{ opacity: 0, scaleX: 0 }}
+                  transition={{ duration: 0.2 }}
+                />
+              )}
             </a>
           ))}
           <button
             type="button"
-            className="nav__link-button"
+            className="nav__link-button nav__link-item"
+            onMouseEnter={() => setHoveredPath('contact')}
+            onMouseLeave={() => setHoveredPath(null)}
             onClick={onBookClick}
           >
             Contact
+            {hoveredPath === 'contact' && (
+              <motion.div
+                layoutId="nav-hover"
+                className="nav__link-indicator"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                exit={{ opacity: 0, scaleX: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+            )}
           </button>
         </nav>
 
@@ -213,6 +249,6 @@ export default function Nav({ onBookClick }: Props) {
           Book Free IT Assessment
         </button>
       </div>
-    </header>
+    </motion.header>
   );
 }
