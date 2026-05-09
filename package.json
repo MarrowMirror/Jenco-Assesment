@@ -1,0 +1,38 @@
+{
+  "name": "jenco-properties-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable industry landing page template for Jenco IT Solutions services",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
+    "@studio-freight/lenis": "^1.0.42",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.14.0",
+    "react": "^18.3.1",
+    "react-colorful": "^5.7.0",
+    "react-dom": "^18.3.1",
+    "react-draggable": "^4.5.0",
+    "react-helmet-async": "^2.0.5",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.3"
+  }
+}
